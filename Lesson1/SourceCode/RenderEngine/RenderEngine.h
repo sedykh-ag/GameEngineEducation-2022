@@ -3,6 +3,7 @@
 #include "Common.h"
 #include "RenderObject.h"
 #include "DefaultGeometry/Cube.h"
+#include "DefaultGeometry/Octahedron.h"
 
 class RENDERENGINE_API CRenderEngine
 {
@@ -20,5 +21,7 @@ private:
 
 	long m_Width = 800;
 	long m_Height = 600;
+	int64_t m_timeOffset;
 	Cube* m_defaultCube;
+	Octahedron* m_defaultOctahedron;
 };

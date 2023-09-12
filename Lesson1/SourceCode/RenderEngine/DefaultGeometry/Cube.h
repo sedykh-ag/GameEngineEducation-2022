@@ -2,6 +2,7 @@
 
 #include "../RenderObject.h"
 
+/*
 namespace
 {
 	struct PosColorVertex
@@ -12,6 +13,7 @@ namespace
 		uint32_t m_abgr;
 	};
 };
+*/
 
 class Cube : public RenderObject
 {

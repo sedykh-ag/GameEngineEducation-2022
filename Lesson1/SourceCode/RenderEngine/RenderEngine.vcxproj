@@ -221,12 +221,14 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="DefaultGeometry\Cube.h" />
+    <ClInclude Include="DefaultGeometry\Octahedron.h" />
     <ClInclude Include="RenderEngine.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="Shaders\ShadersHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultGeometry\Cube.cpp" />
+    <ClCompile Include="DefaultGeometry\Octahedron.cpp" />
     <ClCompile Include="RenderEngine.cpp" />
     <ClCompile Include="RenderObject.cpp" />
   </ItemGroup>

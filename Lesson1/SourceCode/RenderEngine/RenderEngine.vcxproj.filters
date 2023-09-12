@@ -30,6 +30,9 @@
     <ClInclude Include="DefaultGeometry\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DefaultGeometry\Octahedron.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RenderEngine.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DefaultGeometry\Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultGeometry\Octahedron.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

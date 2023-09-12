@@ -1,4 +1,5 @@
 #include <bx/math.h>
+#include <bx/timer.h>
 
 #include "RenderEngine.h"
 
@@ -34,6 +35,9 @@ CRenderEngine::CRenderEngine(HINSTANCE hInstance)
 	bgfx::setViewRect(0, 0, 0, bgfx::BackbufferRatio::Equal);
 
 	m_defaultCube = new Cube();
+	m_defaultOctahedron = new Octahedron();
+	m_timeOffset = bx::getHPCounter();
+
 }
 
 CRenderEngine::~CRenderEngine()
@@ -94,17 +98,27 @@ HWND CRenderEngine::InitMainWindow(HINSTANCE hInstance)
 void CRenderEngine::Update()
 {
 	const bx::Vec3 at = { 0.0f, 0.0f,  0.0f };
-	const bx::Vec3 eye = { 0.0f, 10.0f, -5.0f };
+	const bx::Vec3 eye = { 0.0f, 2.0f, -7.0f };
 	float view[16];
 	bx::mtxLookAt(view, eye, at);
 	float proj[16];
 	bx::mtxProj(proj, 60.0f, float(m_Width) / float(m_Height), 0.1f, 100.0f, bgfx::getCaps()->homogeneousDepth);
 	bgfx::setViewTransform(0, view, proj);
+	
+	float time = (float)((bx::getHPCounter() - m_timeOffset) / double(bx::getHPFrequency()));
 
-	bgfx::setVertexBuffer(0, m_defaultCube->GetVertexBuffer());
-	bgfx::setIndexBuffer(m_defaultCube->GetIndexBuffer());
+	float mtx[16];
+	bx::mtxRotateXY(mtx, time, 2*time);
+	mtx[12] = (float)sin(time);
+	mtx[13] = (float)cos(time);
+	mtx[14] = 0.0f;
 
-	bgfx::submit(0, m_defaultCube->GetProgramHandle());
+	bgfx::setTransform(mtx);
+	
+	bgfx::setVertexBuffer(0, m_defaultOctahedron->GetVertexBuffer());
+	bgfx::setIndexBuffer(m_defaultOctahedron->GetIndexBuffer());
+	bgfx::submit(0, m_defaultOctahedron->GetProgramHandle());
+	
 
 	bgfx::touch(0);
 
