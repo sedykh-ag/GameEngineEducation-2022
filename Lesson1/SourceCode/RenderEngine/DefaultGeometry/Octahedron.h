@@ -2,10 +2,6 @@
 
 #include "../RenderObject.h"
 
-/*
-
-*/
-
 class Octahedron : public RenderObject
 {
 public:
@@ -24,7 +20,6 @@ private:
 
 	inline static const uint16_t s_octahedronTriList[] =
 	{
-		
 		1, 0, 4,
 		2, 1, 4,
 		3, 2, 4,

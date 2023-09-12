@@ -18,7 +18,6 @@ public:
 private:
 	HWND InitMainWindow(HINSTANCE hInstance);
 	HWND m_hwnd = nullptr;
-
 	long m_Width = 800;
 	long m_Height = 600;
 	int64_t m_timeOffset;
