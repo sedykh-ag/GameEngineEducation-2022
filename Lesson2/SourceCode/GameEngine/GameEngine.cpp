@@ -12,6 +12,9 @@
 #include "CubeGameObject.h"
 #include "GameTimer.h"
 
+#include "inih/INIReader.h"
+#include <cctype>
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -22,6 +25,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 #if defined(_DEBUG)
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
+
+    INIReader reader("config/actionmap.ini");
+
+    const char leftKey = std::toupper(reader.Get("Keyboard", "GoLeft", "a").at(0));
+    const char rightKey = std::toupper(reader.Get("Keyboard", "GoRight", "d").at(0));
+    const char upKey = std::toupper(reader.Get("Keyboard", "GoUp", "w").at(0));
+    const char downKey = std::toupper(reader.Get("Keyboard", "GoDown", "s").at(0));
 
     GameTimer timer;
 
@@ -46,10 +56,24 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-            float t = 0;
+            
+            float dt = 0.0f;
             timer.Tick();
-            t = sin(timer.TotalTime())*2;
-            cube->SetPosition(t, 0.0f, 0.0f);
+            dt = timer.DeltaTime();
+
+            // Keyboard events
+            if (GetAsyncKeyState(leftKey) & 0x8000) {
+                cube->MovePosition(-5.0f * dt, 0.0f, 0.0f);
+            }
+            if (GetAsyncKeyState(rightKey) & 0x8000) {
+                cube->MovePosition(5.0f * dt, 0.0f, 0.0f);
+            }
+            if (GetAsyncKeyState(upKey) & 0x8000) {
+                cube->MovePosition(0.0f, 0.0f, 5.0f * dt);
+            }
+            if (GetAsyncKeyState(downKey) & 0x8000) {
+                cube->MovePosition(0.0f, 0.0f, -5.0f * dt);
+            }
 
             renderThread->OnEndFrame();
         }
