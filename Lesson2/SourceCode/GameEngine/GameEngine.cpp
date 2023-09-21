@@ -39,6 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     RenderThread* renderThread = renderEngine->GetRT();
 
     GameObject* cube = new CubeGameObject();
+    cube->SetPosition(0.0f, 0.0f, 0.0f);
     renderThread->EnqueueCommand(RC_CreateCubeRenderObject, cube->GetRenderProxy());
 
     MSG msg = { 0 };
