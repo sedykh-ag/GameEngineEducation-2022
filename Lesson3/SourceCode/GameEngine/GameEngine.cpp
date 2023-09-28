@@ -6,6 +6,9 @@
 #include <crtdbg.h>
 #endif
 
+#include <vector>
+#include <cstdlib>
+
 #include "GameEngine.h"
 #include "RenderEngine.h"
 #include "RenderThread.h"
@@ -30,8 +33,35 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     RenderThread* renderThread = renderEngine->GetRT();
     InputHandler* inputHandler = new InputHandler();
 
-    GameObject* cube = new CubeGameObject();
-    renderThread->EnqueueCommand(RC_CreateCubeRenderObject, cube->GetRenderProxy());
+    std::vector<CubeGameObject*> cubes(100);
+    std::srand(std::time(nullptr));
+
+    for (auto& cube : cubes) {
+        int rand = std::rand() % 3;
+        switch (rand)
+        {
+        case 0:
+            cube = new CubeJumping;
+            break;
+        case 1:
+            cube = new CubeControlled;
+            break;
+        case 2:
+            cube = new CubeMoving;
+            break;
+        }
+
+        renderThread->EnqueueCommand(RC_CreateCubeRenderObject, cube->GetRenderProxy());
+    }
+
+    int cnt = 0;
+    const float spacing = 5.0f;
+    for (int i = 0; i < 10; i++)
+        for (int j = 0; j < 10; j++) {
+            cubes[cnt]->SetPosition(vec3(spacing * i, spacing * 0.0f, spacing * j));
+            cnt++;
+        }
+    
 
     MSG msg = { 0 };
 
@@ -50,19 +80,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
+            timer.Tick();
+            float dt = timer.DeltaTime();
+            float t = timer.TotalTime();
+
             inputHandler->Update();
 
-            float t = 0;
-            timer.Tick();
-            t = sin(timer.TotalTime())*2;
+            // abomination
+            for (auto& cube : cubes) {
+                cube->UpdateDeltaTime(dt);
+                cube->UpdateTotalTime(t, dt);
 
-            float velocity = 0.0f;
-            if (inputHandler->GetInputState().test(eIC_GoLeft))
-                velocity -= 1.0f;
-            if (inputHandler->GetInputState().test(eIC_GoRight))
-                velocity += 1.0f;
-            newPositionX += velocity * timer.DeltaTime();
-            cube->SetPosition(newPositionX, 0.0f, 0.0f);
+                if (inputHandler->GetInputState().test(eIC_GoLeft))
+                    cube->UpdateAction(eIC_GoLeft, dt);
+                if (inputHandler->GetInputState().test(eIC_GoRight))
+                    cube->UpdateAction(eIC_GoRight, dt);
+            }
 
             renderThread->OnEndFrame();
         }

@@ -2,6 +2,7 @@
 
 #include "Common.h"
 #include "RenderProxy.h"
+#include "vec3.h"
 
 class GameObject
 {
@@ -13,7 +14,8 @@ public:
 		delete m_pRenderProxy;
 	}
 
-	void SetPosition(float x, float y, float z);
+	void SetPosition(vec3 p);
+	vec3 GetPosition();
 
 	RenderProxy* const GetRenderProxy() { return m_pRenderProxy; }
 protected:
