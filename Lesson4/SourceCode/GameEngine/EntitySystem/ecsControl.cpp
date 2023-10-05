@@ -1,12 +1,17 @@
+#include <algorithm>
+
 #include "ecsControl.h"
 #include "ecsSystems.h"
 #include "ecsPhys.h"
+#include "ecsMesh.h"
+#include "ecsWeapon.h"
 #include "flecs.h"
 #include "../InputHandler.h"
 
 void register_ecs_control_systems(flecs::world &ecs)
 {
   static auto inputQuery = ecs.query<InputHandlerPtr>();
+
   ecs.system<Velocity, const Speed, const Controllable>()
     .each([&](flecs::entity e, Velocity &vel, const Speed &spd, const Controllable &)
     {

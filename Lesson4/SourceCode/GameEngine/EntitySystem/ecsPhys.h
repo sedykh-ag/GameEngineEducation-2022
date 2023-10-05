@@ -11,6 +11,11 @@ struct Velocity
 	float x, y, z;
 };
 
+struct Radius
+{
+  float val;
+};
+
 struct Gravity
 {
 	float x, y, z;

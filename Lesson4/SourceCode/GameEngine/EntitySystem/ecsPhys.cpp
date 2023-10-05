@@ -8,6 +8,8 @@ static float rand_flt(float from, float to)
 
 void register_ecs_phys_systems(flecs::world &ecs)
 {
+
+  // Gravity system
   ecs.system<Velocity, const Gravity, BouncePlane*, Position*>()
     .each([&](flecs::entity e, Velocity &vel, const Gravity &grav, BouncePlane *plane, Position *pos)
     {
@@ -22,7 +24,7 @@ void register_ecs_phys_systems(flecs::world &ecs)
       vel.z += grav.z * e.delta_time();
     });
 
-
+  // Floor bounce system
   ecs.system<Velocity, Position, const BouncePlane, const Bounciness>()
     .each([&](Velocity &vel, Position &pos, const BouncePlane &plane, const Bounciness &bounciness)
     {
@@ -40,7 +42,7 @@ void register_ecs_phys_systems(flecs::world &ecs)
       }
     });
 
-
+  // Friction system
   ecs.system<Velocity, const FrictionAmount>()
     .each([&](flecs::entity e, Velocity &vel, const FrictionAmount &friction)
     {
@@ -49,7 +51,7 @@ void register_ecs_phys_systems(flecs::world &ecs)
       vel.z -= vel.z * friction.val * e.delta_time();
     });
 
-
+  // Velocity system
   ecs.system<Position, const Velocity>()
     .each([&](flecs::entity e, Position &pos, const Velocity &vel)
     {
@@ -58,7 +60,7 @@ void register_ecs_phys_systems(flecs::world &ecs)
       pos.z += vel.z * e.delta_time();
     });
 
-
+  // Shiver system
   ecs.system<Position, const ShiverAmount>()
     .each([&](flecs::entity e, Position &pos, const ShiverAmount &shiver)
     {
