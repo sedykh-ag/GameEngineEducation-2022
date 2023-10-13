@@ -2,11 +2,13 @@
 #include "ecsSystems.h"
 #include "ecsPhys.h"
 #include "flecs.h"
-#include "../InputHandler.h"
+#include "InputHandler.h"
+#include "ScriptProxy.h"
 
 void register_ecs_control_systems(flecs::world &ecs)
 {
   static auto inputQuery = ecs.query<InputHandlerPtr>();
+  
   ecs.system<Velocity, const Speed, const Controllable>()
     .each([&](flecs::entity e, Velocity &vel, const Speed &spd, const Controllable &)
     {
@@ -20,6 +22,16 @@ void register_ecs_control_systems(flecs::world &ecs)
         vel.x += deltaVel * e.delta_time();
       });
     });
+    
+
+    ecs.system<Velocity, const Speed, CScriptProxy>()
+        .each([&](flecs::entity e, Velocity& vel, const Speed& spd, CScriptProxy& script)
+        {
+            script.PassVariable(&vel.x, "vel_x");
+            script.PassVariable(&spd, "spd");
+            script.Update(e.delta_time());
+        }
+    );
 
   ecs.system<const Position, Velocity, const Controllable, const BouncePlane, const JumpSpeed>()
     .each([&](const Position &pos, Velocity &vel, const Controllable &, const BouncePlane &plane, const JumpSpeed &jump)

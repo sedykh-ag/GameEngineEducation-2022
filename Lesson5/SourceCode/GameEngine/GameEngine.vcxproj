@@ -137,7 +137,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\SDKs\flecs\src;$(SolutionDir)..\..\SDKs\inih\include;$(SolutionDir)\RenderEngine\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\SDKs\flecs\src;$(SolutionDir)..\..\SDKs\inih\include;$(SolutionDir)\RenderEngine\;$(SolutionDir)\ScriptSystem\;$(SolutionDir)..\..\SDKs\sol2\sol2\include;$(SolutionDir)..\..\SDKs\lua\src</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -179,8 +179,6 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameTimer.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="InputHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EntitySystem\ecsControl.cpp" />
@@ -190,7 +188,6 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTimer.cpp" />
-    <ClCompile Include="InputHandler.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

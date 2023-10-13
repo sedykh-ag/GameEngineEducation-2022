@@ -2,7 +2,7 @@
 
 #include "flecs.h"
 #include "RenderEngine.h"
-#include "../InputHandler.h"
+#include "InputHandler.h"
 
 class EntitySystem
 {

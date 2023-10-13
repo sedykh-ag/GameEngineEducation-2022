@@ -146,6 +146,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GameEngine;$(SolutionDir)..\..\SDKs\sol2\sol2\include;$(SolutionDir)..\..\SDKs\inih\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -182,15 +183,14 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\GameEngine\Input.h" />
+    <ClInclude Include="..\GameEngine\InputHandler.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="IScriptProxy.h" />
-    <ClInclude Include="IScriptSystem.h" />
     <ClInclude Include="ScriptProxy.h" />
-    <ClInclude Include="ScriptSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\GameEngine\InputHandler.cpp" />
     <ClCompile Include="ScriptProxy.cpp" />
-    <ClCompile Include="ScriptSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
