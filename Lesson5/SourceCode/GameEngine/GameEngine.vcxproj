@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\$(Configuration)$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)..\Bin\$(Configuration)$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)..\..\SDKs\bgfx\bimg\include\;$(SolutionDir)..\..\SDKs\bgfx\bx\include\;$(SolutionDir)..\..\SDKs\bgfx\bgfx\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\..\SDKs\bgfx\bimg\include\;$(SolutionDir)..\..\SDKs\bgfx\bx\include\;$(SolutionDir)..\..\SDKs\bgfx\bgfx\include\;$(SolutionDir)..\..\SDKs\sol2\sol2\include;$(SolutionDir)..\..\SDKs\lua\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\Bin\$(Configuration)$(Platform)\</OutDir>
@@ -137,7 +137,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\SDKs\flecs\src;$(SolutionDir)..\..\SDKs\inih\include;$(SolutionDir)\RenderEngine\;$(SolutionDir)\ScriptSystem\;$(SolutionDir)..\..\SDKs\sol2\sol2\include;$(SolutionDir)..\..\SDKs\lua\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\SDKs\flecs\src;$(SolutionDir)..\..\SDKs\inih\include;$(SolutionDir)\RenderEngine\;$(SolutionDir)\ScriptSystem\</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>

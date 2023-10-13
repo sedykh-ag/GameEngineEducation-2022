@@ -24,10 +24,10 @@
     <ClInclude Include="ScriptProxy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\GameEngine\Input.h">
+    <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\GameEngine\InputHandler.h">
+    <ClInclude Include="InputHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="ScriptProxy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\GameEngine\InputHandler.cpp">
+    <ClCompile Include="InputHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,8 @@
 #pragma once
 
-enum EInputCommand : size_t
+#include "Common.h"
+
+enum SCRIPTSYSTEM_API EInputCommand : size_t
 {
 	eIC_GoLeft = 0,
 	eIC_GoRight,

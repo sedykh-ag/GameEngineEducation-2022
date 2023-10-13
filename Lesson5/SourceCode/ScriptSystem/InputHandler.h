@@ -4,10 +4,11 @@
 #include <unordered_map>
 #include <bitset>
 
+#include "Common.h"
 #include "Input.h"
 #include "INIReader.h"
 
-class InputHandler
+class SCRIPTSYSTEM_API InputHandler
 {
 public:
 	InputHandler();
@@ -16,10 +17,13 @@ public:
 
 	const std::bitset<eIC_Max>& GetInputState() const;
 
+	bool TestLeftRight();
+	bool IsKeyDown(size_t vk_key);
+
+
 private:
 	void LoadConfiguration();
 
-	bool IsKeyDown(size_t vk_key);
 
 	void MapSymbol(std::string strSymbol, size_t nSymbol);
 	void MapInputEvent(std::size_t nSymbol, size_t nCommand);

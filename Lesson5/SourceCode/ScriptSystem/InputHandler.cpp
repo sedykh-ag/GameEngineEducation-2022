@@ -32,6 +32,16 @@ bool InputHandler::IsKeyDown(size_t vk_key)
 	return false;
 }
 
+bool InputHandler::TestLeftRight()
+{
+	if (GetInputState().test(eIC_GoLeft))
+		return 1;
+	else if (GetInputState().test(eIC_GoRight))
+		return 1;
+	else
+		return 0;
+}
+
 void InputHandler::MapSymbol(std::string strSymbol, size_t nSymbol)
 {
 	m_symbolMap[strSymbol] = nSymbol;
