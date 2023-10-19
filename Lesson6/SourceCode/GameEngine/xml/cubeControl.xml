@@ -1,0 +1,31 @@
+<Entities>
+    <Entity>
+        <Position>
+            <x>2.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </Position>
+        <Velocity>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </Velocity>
+        <Speed>10.0</Speed>
+        <FrictionAmount>0.9</FrictionAmount>
+        <JumpSpeed>10.0</JumpSpeed>
+        <Gravity>
+            <x>0.0</x>
+            <y>-9.8065</y>
+            <z>0.f</z>
+        </Gravity>
+        <BouncePlane>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+            <w>0.0</w>
+        </BouncePlane>
+        <Bounciness>0.3</Bounciness>
+        <Controllable/>
+        <CubeMesh/>
+    </Entity>
+</Entities>

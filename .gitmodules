@@ -10,3 +10,6 @@
 [submodule "SDKs/sol2/sol2"]
 	path = SDKs/sol2/sol2
 	url = https://github.com/ThePhD/sol2
+[submodule "SDKs/tinyxml2"]
+	path = SDKs/tinyxml2
+	url = https://github.com/leethomason/tinyxml2
