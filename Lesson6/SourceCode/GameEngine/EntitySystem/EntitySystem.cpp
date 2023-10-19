@@ -6,7 +6,7 @@
 #include "ScriptProxy.h"
 
 #include <sol/sol.hpp>
-#include "../xml/tinyxml2.h"
+#include <tinyxml2.h>
 
 void EntitySystem::EntitiesFromXML(const char* filepath)
 {
